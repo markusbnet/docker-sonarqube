@@ -24,6 +24,7 @@ done < <(env)
 exec tail -F ./logs/es.log & # this tail on the elasticsearch logs is a temporary workaround, see https://github.com/docker-library/official-images/pull/6361#issuecomment-516184762
 exec java -jar lib/sonar-application-$SONAR_VERSION.jar \
   -Dsonar.log.console=true \
+  -Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false \
   -Dsonar.jdbc.username="$SONARQUBE_JDBC_USERNAME" \
   -Dsonar.jdbc.password="$SONARQUBE_JDBC_PASSWORD" \
   -Dsonar.jdbc.url="$SONARQUBE_JDBC_URL" \
